@@ -99,12 +99,8 @@ public class AuthController {
 		cart.setCustomer(savedUser);
 		Cart savedCart = cartRepository.save(cart);
 //		savedUser.setCart(savedCart);
-
 		List<GrantedAuthority> authorities=new ArrayList<>();
-
 		authorities.add(new SimpleGrantedAuthority(role.toString()));
-
-
 		Authentication authentication = new UsernamePasswordAuthenticationToken(email, password,authorities);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -114,7 +110,6 @@ public class AuthController {
 		authResponse.setJwt(token);
 		authResponse.setMessage("Register Success");
 		authResponse.setRole(savedUser.getRole());
-
 		return new ResponseEntity<>(authResponse, HttpStatus.OK);
 
 	}
